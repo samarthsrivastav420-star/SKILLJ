@@ -3,6 +3,7 @@
  * Express full-stack server integrating Vite middleware, REST APIs, and RBAC.
  */
 import express from 'express';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
@@ -19,7 +20,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -870,7 +871,8 @@ app.post('/api/admin/payout-action', (req, res) => {
 
 // ----------------- VITE MIDDLEWARE (DEV) / STATIC (PROD) -----------------
 async function startServer() {
-  const isProd = process.env.NODE_ENV === 'production';
+  const hasDist = fs.existsSync(path.join(__dirname, 'dist', 'index.html'));
+  const isProd = process.env.NODE_ENV === 'production' || hasDist;
 
   if (!isProd) {
     const vite = await createViteServer({
@@ -886,7 +888,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`[SKILLJ — UNIVERSE] Platform server live at http://0.0.0.0:${PORT}`);
+    console.log(`[SKILLJ — UNIVERSE] Platform server live on port ${PORT}`);
   });
 }
 
