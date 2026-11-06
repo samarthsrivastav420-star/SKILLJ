@@ -1,0 +1,11 @@
+{
+  "id": "/",
+  "name": "SKILLJ — UNIVERSE Learning",
+  "short_name": "SKILLJ",
+  "description": "UNIVERSE Online Learning and Teaching Platform",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#DC2626"
+}
