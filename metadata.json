@@ -1,0 +1,6 @@
+{
+  "name": "SKILLJ — UNIVERSE Online Learning & Teaching Platform",
+  "description": "SKILLJ by UNIVERSE: A modern, responsive online learning and teaching ecosystem featuring student & teacher dashboards, live classes, course exams, certifications, attendance tracking, and secure payments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
