@@ -4,8 +4,9 @@
   "cleanUrls": false,
   "rewrites": [
     {
-      "source": "/((?!google[0-9a-f]+\\.html|robots\\.txt|sitemap\\.xml).*)",
+      "source": "/((?!assets/|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
 }
+

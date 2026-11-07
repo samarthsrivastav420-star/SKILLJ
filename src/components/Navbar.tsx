@@ -8,7 +8,9 @@ import {
   Award, 
   ChevronDown,
   Layers,
-  BookOpen
+  BookOpen,
+  Smartphone,
+  Download
 } from 'lucide-react';
 import { StudentProfile, TeacherProfile } from '../types';
 
@@ -22,6 +24,7 @@ interface NavbarProps {
   onOpenStudentAuth: () => void;
   onOpenTeacherAuth: () => void;
   onOpenPaymentModal: () => void;
+  onOpenAppInstallModal: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -34,6 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenStudentAuth,
   onOpenTeacherAuth,
   onOpenPaymentModal,
+  onOpenAppInstallModal,
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-rose-100 shadow-xs">
@@ -46,13 +50,22 @@ export const Navbar: React.FC<NavbarProps> = ({
             </span>
             <span className="hidden sm:inline">SKILLJ Online Education Ecosystem:</span>
             <span className="text-rose-100 truncate">
-              Monthly Exams on 1st of every month • Grand Yearly Exam 10–25 Jan • Live Stream Classes Active
+              Monthly Exams on 1st • Yearly Exam 10–25 Jan • Live Stream Classes Active
             </span>
           </div>
-          <div className="flex items-center space-x-4 shrink-0 text-[11px]">
+          <div className="flex items-center space-x-3 shrink-0 text-[11px]">
+            <button
+              onClick={onOpenAppInstallModal}
+              className="flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-[10px] uppercase tracking-wider cursor-pointer shadow-xs transition-all animate-pulse"
+              title="Install SKILLJ on Mobile or Fix .AAB file"
+            >
+              <Smartphone className="w-3 h-3" />
+              <span>Install App / .AAB Fix</span>
+            </button>
+            <span className="text-white/40 hidden sm:inline">|</span>
             <button
               onClick={() => onNavigate('verify-cert')}
-              className="hover:underline flex items-center gap-1 cursor-pointer"
+              className="hover:underline hidden sm:flex items-center gap-1 cursor-pointer"
             >
               <Award className="w-3.5 h-3.5" />
               <span>Verify Certificate</span>
@@ -218,6 +231,16 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </div>
               </div>
             )}
+
+            {/* Direct App Install Center Button */}
+            <button
+              onClick={onOpenAppInstallModal}
+              className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
+              title="Install Mobile App or get .AAB Fix"
+            >
+              <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
+              <span>Get Mobile App</span>
+            </button>
 
             {(activeRole === 'guest' || (!student && !teacher)) && (
               <div className="flex items-center gap-2">
