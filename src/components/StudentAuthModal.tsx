@@ -307,7 +307,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
               {/* Step 1: Personal & Guardian Details */}
               {step === 1 && (
                 <div className="space-y-3.5">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
                       <input
@@ -343,7 +343,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">Date of Birth *</label>
                       <input
@@ -367,7 +367,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">Father's Name *</label>
                       <input
@@ -404,7 +404,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
               {/* Step 2: Contact & Demographics */}
               {step === 2 && (
                 <div className="space-y-3.5">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">Mobile Number *</label>
                       <input
@@ -428,7 +428,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">Country *</label>
                       <input
@@ -507,7 +507,7 @@ export const StudentAuthModal: React.FC<StudentAuthModalProps> = ({
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">Current Class / Standard</label>
                       <input

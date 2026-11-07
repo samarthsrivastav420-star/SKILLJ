@@ -43,22 +43,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
   return (
     <div className="space-y-16 pb-20">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-red-600 via-rose-600 to-red-700 text-white pt-16 pb-24 sm:pt-20 sm:pb-32">
+      <section className="relative overflow-hidden bg-gradient-to-b from-red-600 via-rose-600 to-red-700 text-white pt-10 sm:pt-20 pb-16 sm:pb-32 w-full max-w-full">
         {/* Subtle geometric pattern overlay */}
         <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-6 text-rose-100 shadow-xs">
+          <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md border border-white/25 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-wider mb-4 sm:mb-6 text-rose-100 shadow-xs">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>UNIVERSE PRESENTS • SKILLJ LEARNING ECOSYSTEM</span>
+            <span className="truncate">UNIVERSE PRESENTS • SKILLJ LEARNING ECOSYSTEM</span>
           </div>
 
           {/* Main Title */}
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-black tracking-tight text-white max-w-4xl mx-auto leading-none">
+          <h1 className="text-3xl sm:text-6xl lg:text-7xl font-display font-black tracking-tight text-white max-w-4xl mx-auto leading-tight sm:leading-none">
             LEARN • TEACH • GROW
           </h1>
-          <p className="mt-4 text-lg sm:text-xl text-rose-100 max-w-2xl mx-auto font-medium">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-xl text-rose-100 max-w-2xl mx-auto font-medium px-2 leading-relaxed">
             India's most trusted online education platform. Connecting ambitious students with verified master faculty across 
             <span className="font-bold text-white underline decoration-rose-300 ml-1">SKILL</span>, 
             <span className="font-bold text-white underline decoration-rose-300 ml-1">COURSE</span>, and 
@@ -66,11 +66,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </p>
 
           {/* The Two Main Entry Options (Requirement 2) */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-lg mx-auto">
+          <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-lg mx-auto">
             {/* Option 1: LOGIN AS A STUDENT */}
             <button
               onClick={onOpenStudentAuth}
-              className="w-full sm:w-auto px-8 py-4 bg-white text-red-600 hover:bg-slate-50 text-base font-black rounded-2xl shadow-xl shadow-red-950/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3 cursor-pointer group"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-red-600 hover:bg-slate-50 text-sm sm:text-base font-black rounded-2xl shadow-xl shadow-red-950/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
             >
               <GraduationCap className="w-5 h-5 text-red-600 group-hover:scale-110 transition-transform" />
               <span>LOGIN AS A STUDENT</span>
@@ -80,7 +80,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             {/* Option 2: REGISTER AS A TEACHER */}
             <button
               onClick={onOpenTeacherAuth}
-              className="w-full sm:w-auto px-8 py-4 bg-slate-950/80 hover:bg-slate-900 border-2 border-white/30 text-white text-base font-black rounded-2xl shadow-xl shadow-black/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-3 cursor-pointer group"
+              className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-slate-950/80 hover:bg-slate-900 border-2 border-white/30 text-white text-sm sm:text-base font-black rounded-2xl shadow-xl shadow-black/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
             >
               <UserCheck className="w-5 h-5 text-rose-400 group-hover:scale-110 transition-transform" />
               <span>REGISTER AS A TEACHER</span>
@@ -89,20 +89,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </div>
 
           {/* Quick App Download & .AAB Helper Bar */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-3 max-w-md mx-auto">
             <button
               onClick={onOpenAppInstallModal}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-500/90 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm rounded-xl border border-emerald-300/40 shadow-lg shadow-emerald-950/20 transition-all cursor-pointer hover:scale-105"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-white font-black text-xs sm:text-sm rounded-xl border border-emerald-300/40 shadow-lg shadow-emerald-950/20 transition-all cursor-pointer"
             >
               <Smartphone className="w-4 h-4" />
               <span>📲 Install App on Phone (1-Tap)</span>
             </button>
             <button
               onClick={onOpenAppInstallModal}
-              className="inline-flex items-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-white/20 text-rose-100 font-bold text-xs rounded-xl border border-white/20 transition-all cursor-pointer backdrop-blur-md"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white/15 hover:bg-white/25 text-white font-bold text-xs rounded-xl border border-white/25 transition-all cursor-pointer backdrop-blur-md"
             >
               <Package className="w-4 h-4 text-amber-300" />
-              <span>.AAB File Installer Fix &amp; Guide</span>
+              <span>Play Store .AAB &amp; APK Installer</span>
             </button>
           </div>
 

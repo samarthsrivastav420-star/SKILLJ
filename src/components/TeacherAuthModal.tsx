@@ -267,7 +267,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
                   <input
@@ -292,7 +292,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <div className="flex items-center justify-between mb-1">
                     <label className="block text-xs font-bold text-slate-700">
@@ -377,7 +377,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">Official Gmail *</label>
                   <input
@@ -402,7 +402,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">WhatsApp Number</label>
                   <input
@@ -426,7 +426,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
               </div>
 
               {/* Masked Compliance verification fields */}
-              <div className="grid grid-cols-2 gap-3 bg-rose-50/40 p-3 rounded-xl border border-rose-200">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-rose-50/40 p-3 rounded-xl border border-rose-200">
                 <div>
                   <label className="block text-xs font-bold text-slate-800 mb-1">
                     Last Four Digits of Aadhaar *
@@ -484,7 +484,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">Father's Name</label>
                   <input

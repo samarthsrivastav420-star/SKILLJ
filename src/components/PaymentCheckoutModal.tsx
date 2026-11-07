@@ -191,7 +191,7 @@ export const PaymentCheckoutModal: React.FC<PaymentCheckoutModalProps> = ({
               <label className="block text-xs font-bold text-slate-800 mb-2">
                 1. Select SKILLJ Subscription Plan:
               </label>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* Monthly Plan */}
                 <div
                   onClick={() => setSelectedPlan('MONTHLY')}
