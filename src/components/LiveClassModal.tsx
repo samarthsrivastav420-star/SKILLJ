@@ -128,7 +128,7 @@ export const LiveClassModal: React.FC<LiveClassModalProps> = ({
             <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
               <video
                 ref={videoRef}
-                src={session.streamUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4'}
+                src={session.streamUrl || 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'}
                 autoPlay
                 loop
                 muted

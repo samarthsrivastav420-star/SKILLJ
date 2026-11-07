@@ -517,7 +517,7 @@ class DatabaseEngine {
             description: 'Understanding client-server separation, state flow, and atomic UI design patterns.',
             duration: '28:45',
             views: 4820,
-            videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+            videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
           },
           {
             id: 'v2',
@@ -525,7 +525,7 @@ class DatabaseEngine {
             description: 'Building secure endpoints, protecting sensitive identifiers, and managing persistent state.',
             duration: '34:10',
             views: 3910,
-            videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4',
+            videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
           },
           {
             id: 'v3',
@@ -533,7 +533,7 @@ class DatabaseEngine {
             description: 'Building high concurrency collaborative features and responsive state streaming.',
             duration: '31:20',
             views: 3100,
-            videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+            videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
           },
         ],
         ebooks: [
@@ -573,7 +573,7 @@ class DatabaseEngine {
             description: 'Hypothesis testing, variance breakdown, and distributions.',
             duration: '32:15',
             views: 5210,
-            videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+            videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
           },
         ],
         ebooks: [
@@ -606,7 +606,7 @@ class DatabaseEngine {
             description: 'Step-by-step methods for continuity, differentiation, and graphical tangents.',
             duration: '40:00',
             views: 6700,
-            videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4',
+            videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
           },
         ],
         ebooks: [
@@ -633,7 +633,7 @@ class DatabaseEngine {
         status: 'LIVE',
         viewersCount: 42,
         startedAt: new Date(Date.now() - 25 * 60000).toISOString(),
-        streamUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+        streamUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
       },
       {
         id: 'live-2',

@@ -196,12 +196,18 @@ export default function App() {
   const [isTeacherAuthOpen, setIsTeacherAuthOpen] = useState(false);
   const [isTeacherInterviewOpen, setIsTeacherInterviewOpen] = useState(false);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
+  const [checkoutPlan, setCheckoutPlan] = useState<'MONTHLY' | 'YEARLY'>('MONTHLY');
   const [selectedLiveSession, setSelectedLiveSession] = useState<LiveSession | null>(null);
   const [selectedExam, setSelectedExam] = useState<Exam | null>(null);
   const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
   const [isWithdrawalOpen, setIsWithdrawalOpen] = useState(false);
   const [isNewContentOpen, setIsNewContentOpen] = useState(false);
   const [isAppInstallOpen, setIsAppInstallOpen] = useState(false);
+
+  const handleOpenPayment = (plan: 'MONTHLY' | 'YEARLY' = 'MONTHLY') => {
+    setCheckoutPlan(plan);
+    setIsPaymentModalOpen(true);
+  };
 
   // Initialize data
   useEffect(() => {
@@ -331,7 +337,7 @@ export default function App() {
         onSwitchRole={handleSwitchRole}
         onOpenStudentAuth={() => setIsStudentAuthOpen(true)}
         onOpenTeacherAuth={() => setIsTeacherAuthOpen(true)}
-        onOpenPaymentModal={() => setIsPaymentModalOpen(true)}
+        onOpenPaymentModal={() => handleOpenPayment('MONTHLY')}
         onOpenAppInstallModal={() => setIsAppInstallOpen(true)}
       />
 
@@ -341,7 +347,7 @@ export default function App() {
           <HomeView
             onOpenStudentAuth={() => setIsStudentAuthOpen(true)}
             onOpenTeacherAuth={() => setIsTeacherAuthOpen(true)}
-            onOpenPaymentModal={() => setIsPaymentModalOpen(true)}
+            onOpenPaymentModal={handleOpenPayment}
             onOpenAppInstallModal={() => setIsAppInstallOpen(true)}
             onSelectCategory={(cat) => {
               handleUpdateStudentCategory(cat);
@@ -357,12 +363,13 @@ export default function App() {
           <StudentDashboardView
             student={student}
             teachers={teachersList}
-            onOpenPaymentModal={() => setIsPaymentModalOpen(true)}
+            onOpenPaymentModal={() => handleOpenPayment('MONTHLY')}
             onOpenLiveClass={(session) => setSelectedLiveSession(session)}
             onOpenExam={(exam) => setSelectedExam(exam)}
             onOpenCertificate={(cert) => setSelectedCertificate(cert)}
             onUpdateCategory={handleUpdateStudentCategory}
             onAssignTeacher={handleAssignTeacher}
+            onOpenAppInstallModal={() => setIsAppInstallOpen(true)}
           />
         )}
 
@@ -374,6 +381,7 @@ export default function App() {
             onOpenLiveClass={(session) => setSelectedLiveSession(session)}
             onOpenCertificate={(cert) => setSelectedCertificate(cert)}
             onTeacherInterviewClick={() => setIsTeacherInterviewOpen(true)}
+            onOpenAppInstallModal={() => setIsAppInstallOpen(true)}
           />
         )}
 
@@ -424,11 +432,17 @@ export default function App() {
 
       {/* Payment Gateway Modal (UPI, Cards, ₹250 & ₹3000 Plans) */}
       <PaymentCheckoutModal
+        key={`pay-${checkoutPlan}-${isPaymentModalOpen}`}
         isOpen={isPaymentModalOpen}
         onClose={() => setIsPaymentModalOpen(false)}
         student={student}
+        initialPlan={checkoutPlan}
         onPaymentSuccess={(updatedStudent) => {
           setStudent(updatedStudent);
+        }}
+        onNavigateToDashboard={() => {
+          setActiveRole('student');
+          setCurrentView('student-dashboard');
         }}
       />
 

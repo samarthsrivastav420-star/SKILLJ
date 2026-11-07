@@ -24,7 +24,7 @@ import { TeacherProfile } from '../types';
 interface HomeViewProps {
   onOpenStudentAuth: () => void;
   onOpenTeacherAuth: () => void;
-  onOpenPaymentModal: () => void;
+  onOpenPaymentModal: (plan?: 'MONTHLY' | 'YEARLY') => void;
   onSelectCategory: (cat: 'SKILL' | 'COURSE' | 'EDUCATION') => void;
   teachers: TeacherProfile[];
   onNavigate: (view: any) => void;
@@ -273,7 +273,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
 
             <button
-              onClick={onOpenPaymentModal}
+              onClick={() => onOpenPaymentModal('MONTHLY')}
               className="mt-8 w-full py-3.5 bg-red-600 hover:bg-red-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-md shadow-red-500/20 transition-all cursor-pointer flex items-center justify-center gap-2"
             >
               <span>SEE DETAILS &amp; SUBSCRIBE (₹250)</span>
@@ -327,7 +327,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
 
             <button
-              onClick={onOpenPaymentModal}
+              onClick={() => onOpenPaymentModal('YEARLY')}
               className="mt-8 w-full py-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-bold text-xs sm:text-sm rounded-xl shadow-lg shadow-red-500/30 transition-all cursor-pointer flex items-center justify-center gap-2"
             >
               <Sparkles className="w-4 h-4 text-rose-200" />

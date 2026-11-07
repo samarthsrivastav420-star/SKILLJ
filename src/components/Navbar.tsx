@@ -232,14 +232,14 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
             )}
 
-            {/* Direct App Install Center Button */}
+            {/* Direct App Install Center Button (Visible on all viewports & AI Studio) */}
             <button
               onClick={onOpenAppInstallModal}
-              className="hidden lg:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 hover:bg-black text-white text-xs font-bold transition-all shadow-sm cursor-pointer"
-              title="Install Mobile App or get .AAB Fix"
+              className="flex items-center gap-1.5 px-3 py-1.5 sm:py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold transition-all shadow-md shadow-emerald-500/20 cursor-pointer"
+              title="Install Mobile App, .AAB Fix, or APK"
             >
-              <Smartphone className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Get Mobile App</span>
+              <Smartphone className="w-3.5 h-3.5 text-white" />
+              <span className="whitespace-nowrap">Install App / APK</span>
             </button>
 
             {(activeRole === 'guest' || (!student && !teacher)) && (

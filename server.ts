@@ -34,6 +34,41 @@ app.get('/robots.txt', (req, res) => {
   res.send(`User-agent: *\nAllow: /\nSitemap: ${baseUrl}/sitemap.xml\n`);
 });
 
+app.get('/.well-known/assetlinks.json', (_req, res) => {
+  const filePath = path.join(process.cwd(), 'public', '.well-known', 'assetlinks.json');
+  if (fs.existsSync(filePath)) {
+    res.type('application/json');
+    return res.sendFile(filePath);
+  }
+  return res.json([
+    {
+      relation: ["delegate_permission/common.handle_all_urls"],
+      target: {
+        namespace: "android_app",
+        package_name: "com.universe.skillj",
+        sha256_cert_fingerprints: [
+          "14:6D:E9:7D:0F:52:CC:71:85:4E:87:EF:A2:AE:6E:04:AC:32:8E:84:36:24:64:14:FC:AC:70:38:1B:63:7A:44",
+          "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C"
+        ]
+      }
+    }
+  ]);
+});
+
+app.get('/downloads/:filename', (req, res) => {
+  const safeFilename = path.basename(req.params.filename);
+  const filePath = path.join(process.cwd(), 'public', 'downloads', safeFilename);
+  if (fs.existsSync(filePath)) {
+    return res.download(filePath, safeFilename);
+  }
+  return res.status(404).send('File not found');
+});
+
+app.get('/ads.txt', (_req, res) => {
+  res.type('text/plain');
+  res.send('google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0\n');
+});
+
 app.get('/sitemap.xml', (req, res) => {
   const protocol = req.headers['x-forwarded-proto'] || 'https';
   const host = req.headers.host || 'skillj.universe.org';
@@ -234,7 +269,7 @@ app.post('/api/auth/register-teacher', (req, res) => {
       last4Pan: last4Pan || 'XXXX',
       category: category || 'SKILL',
       address: address || '',
-      degreeDiploma: degreeDiploma || 'Master of Technology / Education',
+      degreeDiploma: degreeDiploma || 'Self-Taught / Industry Experience (No Degree)',
       experienceYears: Number(experienceYears) || 5,
       profilePhoto: profilePhoto || 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
       verificationStatus: 'PENDING_REVIEW' as const, // will be tested next
@@ -447,7 +482,7 @@ app.post('/api/content/upload-video', (req, res) => {
       description,
       duration: duration || '25:00',
       views: 0,
-      videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+      videoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
     };
 
     targetCourse.videos.push(newVideo);
@@ -475,7 +510,7 @@ app.post('/api/content/create-live', (req, res) => {
       status: 'LIVE',
       viewersCount: 1,
       startedAt: new Date().toISOString(),
-      streamUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+      streamUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
     };
 
     db.liveSessions.unshift(newLive);
@@ -871,8 +906,7 @@ app.post('/api/admin/payout-action', (req, res) => {
 
 // ----------------- VITE MIDDLEWARE (DEV) / STATIC (PROD) -----------------
 async function startServer() {
-  const hasDist = fs.existsSync(path.join(__dirname, 'dist', 'index.html'));
-  const isProd = process.env.NODE_ENV === 'production' || hasDist;
+  const isProd = process.env.NODE_ENV === 'production';
 
   if (!isProd) {
     const vite = await createViteServer({

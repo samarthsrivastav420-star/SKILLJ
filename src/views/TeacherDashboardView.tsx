@@ -20,7 +20,8 @@ import {
   Eye, 
   Megaphone,
   BookOpen,
-  ArrowRight
+  ArrowRight,
+  Smartphone,
 } from 'lucide-react';
 import { 
   TeacherProfile, 
@@ -40,6 +41,7 @@ interface TeacherDashboardViewProps {
   onOpenLiveClass: (session: LiveSession) => void;
   onOpenCertificate: (cert: Certificate) => void;
   onTeacherInterviewClick: () => void;
+  onOpenAppInstallModal?: () => void;
 }
 
 export const TeacherDashboardView: React.FC<TeacherDashboardViewProps> = ({
@@ -49,6 +51,7 @@ export const TeacherDashboardView: React.FC<TeacherDashboardViewProps> = ({
   onOpenLiveClass,
   onOpenCertificate,
   onTeacherInterviewClick,
+  onOpenAppInstallModal,
 }) => {
   const [activeTab, setActiveTab] = useState<'MY_ACTIVITY' | 'CERTIFICATES' | 'ATTENDANCE_DASHBOARD' | 'MY_STUDENTS' | 'MY_EARNING' | 'MY_UPLOADED_VIDEOS'>('MY_ACTIVITY');
   const [attendanceSubTab, setAttendanceSubTab] = useState<'MY_ATTENDANCE' | 'STUDENTS_ATTENDANCE'>('MY_ATTENDANCE');
@@ -145,6 +148,33 @@ export const TeacherDashboardView: React.FC<TeacherDashboardViewProps> = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      {/* Mobile App Download & Install Banner */}
+      {onOpenAppInstallModal && (
+        <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md border border-slate-700">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
+              <Smartphone className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white flex items-center gap-2">
+                <span>SKILLJ Mobile App Center</span>
+                <span className="bg-emerald-500 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">1-Tap Install / APK</span>
+              </p>
+              <p className="text-xs text-slate-300">
+                Install direct on phone, get .APK file, or fix &amp; run .AAB bundle.
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onOpenAppInstallModal}
+            className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-black rounded-xl transition-all shadow-md cursor-pointer flex items-center justify-center gap-2 shrink-0"
+          >
+            <span>Open Install &amp; APK Center</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {/* Teacher Profile Card (Requirement 13) */}
       <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-rose-100 relative overflow-hidden">
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">

@@ -62,8 +62,8 @@
       "subscription": {
         "active": true,
         "plan": "MONTHLY",
-        "expiresAt": "2026-12-01T11:21:40.664Z",
-        "lastPaymentId": "TXN-SKJ-98214"
+        "expiresAt": "2026-12-07T08:58:23.732Z",
+        "lastPaymentId": "TXN-SKJ-903732"
       },
       "basicTestResult": {
         "totalMarks": 10,
@@ -112,8 +112,8 @@
         "verified": true
       },
       "wallet": {
-        "totalEarnings": 18400,
-        "availableBalance": 4200,
+        "totalEarnings": 18800,
+        "availableBalance": 4600,
         "pendingPayments": 0,
         "withdrawnAmount": 14200
       },
@@ -236,7 +236,7 @@
           "description": "Understanding client-server separation, state flow, and atomic UI design patterns.",
           "duration": "28:45",
           "views": 4820,
-          "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+          "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
         },
         {
           "id": "v2",
@@ -244,7 +244,7 @@
           "description": "Building secure endpoints, protecting sensitive identifiers, and managing persistent state.",
           "duration": "34:10",
           "views": 3910,
-          "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
         },
         {
           "id": "v3",
@@ -252,7 +252,7 @@
           "description": "Building high concurrency collaborative features and responsive state streaming.",
           "duration": "31:20",
           "views": 3100,
-          "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+          "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
         }
       ],
       "ebooks": [
@@ -292,7 +292,7 @@
           "description": "Hypothesis testing, variance breakdown, and distributions.",
           "duration": "32:15",
           "views": 5210,
-          "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+          "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
         }
       ],
       "ebooks": [
@@ -325,7 +325,7 @@
           "description": "Step-by-step methods for continuity, differentiation, and graphical tangents.",
           "duration": "40:00",
           "views": 6700,
-          "videoUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
+          "videoUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
         }
       ],
       "ebooks": [
@@ -350,7 +350,7 @@
       "status": "LIVE",
       "viewersCount": 42,
       "startedAt": "2026-11-06T10:56:40.664Z",
-      "streamUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
+      "streamUrl": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
     },
     {
       "id": "live-2",
@@ -602,6 +602,34 @@
     }
   ],
   "transactions": [
+    {
+      "id": "TXN-SKJ-903732",
+      "studentId": "student-aarav",
+      "studentName": "Aarav Sharma",
+      "teacherId": "teacher-vikram",
+      "teacherName": "Vikram Aditya",
+      "amount": 250,
+      "platformFee": 50,
+      "teacherShare": 200,
+      "plan": "MONTHLY",
+      "method": "UPI (student@okaxis)",
+      "status": "SUCCESS",
+      "createdAt": "2026-11-07T08:58:23.732Z"
+    },
+    {
+      "id": "TXN-SKJ-532933",
+      "studentId": "student-aarav",
+      "studentName": "Aarav Sharma",
+      "teacherId": "teacher-vikram",
+      "teacherName": "Vikram Aditya",
+      "amount": 250,
+      "platformFee": 50,
+      "teacherShare": 200,
+      "plan": "MONTHLY",
+      "method": "UPI (student@okaxis)",
+      "status": "SUCCESS",
+      "createdAt": "2026-11-07T08:52:12.934Z"
+    },
     {
       "id": "TXN-SKJ-98214",
       "studentId": "student-aarav",

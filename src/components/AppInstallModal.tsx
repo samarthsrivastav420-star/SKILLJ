@@ -22,7 +22,7 @@ interface AppInstallModalProps {
 }
 
 export const AppInstallModal: React.FC<AppInstallModalProps> = ({ isOpen, onClose }) => {
-  const [activeTab, setActiveTab] = useState<'pwa' | 'aab' | 'apk'>('pwa');
+  const [activeTab, setActiveTab] = useState<'playstore' | 'pwa' | 'aab' | 'apk'>('playstore');
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [isInstalled, setIsInstalled] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -92,46 +92,218 @@ export const AppInstallModal: React.FC<AppInstallModalProps> = ({ isOpen, onClos
           </p>
 
           {/* Navigation Tabs */}
-          <div className="flex gap-2 mt-5 bg-black/20 p-1 rounded-2xl">
+          <div className="flex flex-wrap sm:flex-nowrap gap-1.5 mt-5 bg-black/25 p-1.5 rounded-2xl">
+            <button
+              onClick={() => setActiveTab('playstore')}
+              className={`flex-1 py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+                activeTab === 'playstore'
+                  ? 'bg-white text-emerald-800 shadow-md ring-2 ring-emerald-400'
+                  : 'text-white/80 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              <Package className="w-4 h-4 text-emerald-400" />
+              <span>Play Store .AAB</span>
+              <span className="bg-emerald-500 text-white text-[9px] px-1.5 py-0.2 rounded-full uppercase font-black">Official</span>
+            </button>
             <button
               onClick={() => setActiveTab('pwa')}
-              className={`flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              className={`flex-1 py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                 activeTab === 'pwa'
                   ? 'bg-white text-red-600 shadow-md'
                   : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
               <Smartphone className="w-4 h-4" />
-              <span>1-Tap Instant Install</span>
-              <span className="bg-emerald-500 text-white text-[9px] px-1.5 py-0.2 rounded-full uppercase">Best</span>
+              <span>1-Tap Install</span>
             </button>
             <button
               onClick={() => setActiveTab('aab')}
-              className={`flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              className={`flex-1 py-2 px-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
                 activeTab === 'aab'
                   ? 'bg-white text-red-600 shadow-md'
                   : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
-              <Package className="w-4 h-4" />
-              <span>.AAB Installer Fix</span>
+              <Layers className="w-4 h-4" />
+              <span>Phone .AAB Fix</span>
             </button>
             <button
               onClick={() => setActiveTab('apk')}
-              className={`flex-1 py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              className={`flex-1 py-2 px-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1 cursor-pointer ${
                 activeTab === 'apk'
                   ? 'bg-white text-red-600 shadow-md'
                   : 'text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
               <Download className="w-4 h-4" />
-              <span>Direct APK Guide</span>
+              <span>APK Guide</span>
             </button>
           </div>
         </div>
 
         {/* Content Body */}
         <div className="p-5 sm:p-6 overflow-y-auto space-y-5 text-slate-800 flex-1">
+          {/* TAB 0: PLAY STORE .AAB PACKAGE & DOWNLOAD */}
+          {activeTab === 'playstore' && (
+            <div className="space-y-5 animate-in fade-in duration-200">
+              {/* Ready-to-Download Banner */}
+              <div className="p-5 rounded-2xl bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100/60 border border-emerald-300 shadow-sm space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-11 h-11 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md">
+                    <Package className="w-6 h-6" />
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-2">
+                      <span className="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        Google Play Store Ready
+                      </span>
+                      <span className="text-xs text-emerald-800 font-mono font-bold">Package: com.universe.skillj</span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-slate-900">
+                      SKILLJ Official Android App Bundle (.aab)
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      Ye file Google Play Console ke official standards (Trusted Web Activity - TWA) ke mutabik ready hai. Isko aap direct Play Console par upload kar sakte hain.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Direct Action Buttons */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  <a
+                    href="/downloads/skillj-release.aab"
+                    download="skillj-release.aab"
+                    className="flex items-center justify-center gap-2.5 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Download .AAB File (Play Store)</span>
+                  </a>
+
+                  <a
+                    href="/downloads/skillj-play-store-twa.zip"
+                    download="skillj-play-store-twa.zip"
+                    className="flex items-center justify-center gap-2.5 py-3 px-4 bg-slate-900 hover:bg-black text-white rounded-xl font-bold text-xs sm:text-sm shadow-md hover:shadow-lg transition-all cursor-pointer"
+                  >
+                    <Package className="w-4 h-4 text-emerald-400" />
+                    <span>Download Full Android Project (ZIP)</span>
+                  </a>
+                </div>
+
+                <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-emerald-200 text-xs text-emerald-900 font-medium">
+                  <a
+                    href="/downloads/playstore-icon-512x512.png"
+                    download="playstore-icon-512x512.png"
+                    className="flex items-center gap-1.5 underline hover:text-emerald-700 cursor-pointer font-bold"
+                  >
+                    <Download className="w-3.5 h-3.5" />
+                    <span>Download 512x512 High-Res Play Store Icon</span>
+                  </a>
+
+                  <span className="text-[11px] bg-white/80 px-2 py-0.5 rounded border border-emerald-200 font-mono">
+                    Digital Asset Links: ACTIVE &bull; /.well-known/assetlinks.json
+                  </span>
+                </div>
+              </div>
+
+              {/* Technical Specifications for Google Play */}
+              <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                <h4 className="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center gap-1.5">
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                  <span>Google Play Console Listing Metadata</span>
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase">Package ID</p>
+                    <p className="font-mono font-bold text-slate-800 truncate">com.universe.skillj</p>
+                  </div>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase">Version</p>
+                    <p className="font-mono font-bold text-slate-800">1.0.0 (Code 1)</p>
+                  </div>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase">Category</p>
+                    <p className="font-bold text-slate-800">Education</p>
+                  </div>
+                  <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+                    <p className="text-[10px] text-slate-500 font-bold uppercase">Target Android</p>
+                    <p className="font-bold text-slate-800">API 34 (Android 14)</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step-by-Step Play Console Guide in Hindi */}
+              <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3.5">
+                <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-lg bg-red-100 text-red-700 flex items-center justify-center text-xs font-black">?</span>
+                  <span>Google Play Store Par Upload Karne Ke 4 Asaan Steps</span>
+                </h4>
+
+                <div className="space-y-3 text-xs text-slate-700">
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+                    <span className="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[11px]">1</span>
+                    <div>
+                      <p className="font-bold text-slate-900">Upar Di Gayi .AAB File Download Karein:</p>
+                      <p className="text-slate-600">Green button par click karke <strong>skillj-release.aab</strong> apne computer ya phone me save karein.</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+                    <span className="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[11px]">2</span>
+                    <div>
+                      <p className="font-bold text-slate-900">Google Play Console Me New App Banayein:</p>
+                      <p className="text-slate-600">
+                        <strong>play.google.com/console</strong> me login karein &rarr; <strong>"Create app"</strong> &rarr; App Name me <em>"SKILLJ"</em>, Category <em>"Education"</em>, aur Type <em>"Free"</em> select karein.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+                    <span className="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[11px]">3</span>
+                    <div>
+                      <p className="font-bold text-slate-900">.AAB File Upload Karein:</p>
+                      <p className="text-slate-600">
+                        Left menu se <strong>"Production"</strong> ya <strong>"Internal Testing"</strong> par jayein &rarr; <strong>"Create new release"</strong> &rarr; <strong>skillj-release.aab</strong> file upload karein.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200">
+                    <span className="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[11px]">4</span>
+                    <div>
+                      <p className="font-bold text-slate-900">Icon &amp; Details Submit Karein:</p>
+                      <p className="text-slate-600">
+                        Store Listing me upar di gayi <strong>512x512 icon</strong> aur 2-3 screenshots attach karein aur <strong>"Start rollout"</strong> par click karein. Google review ke baad aapki app Play Store par live ho jayegi!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* PWABuilder Online 1-Click Backup Option */}
+              <div className="p-4 rounded-xl bg-slate-900 text-white space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800">
+                    ALTERNATIVE ONLINE BUILDER
+                  </span>
+                  <ExternalLink className="w-4 h-4 text-slate-400" />
+                </div>
+                <p className="text-xs font-bold text-white">PWABuilder Online Generator (Free Cloud Build)</p>
+                <p className="text-[11px] text-slate-300 leading-relaxed">
+                  Agar aap future me apna custom domain badalte hain, to aap direct <strong>PWABuilder.com</strong> par jakar apni website ka link daal kar bhi fresh signed .aab generate kar sakte hain.
+                </p>
+                <a
+                  href={`https://www.pwabuilder.com/?site=${encodeURIComponent(window.location.origin)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 underline pt-1 cursor-pointer"
+                >
+                  <span>Open PWABuilder with current site URL</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          )}
+
           {/* TAB 1: 1-TAP INSTANT PWA (BEST OPTION) */}
           {activeTab === 'pwa' && (
             <div className="space-y-5">

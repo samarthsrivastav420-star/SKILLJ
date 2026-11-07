@@ -28,6 +28,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
   const [mode, setMode] = useState<'login' | 'register'>('register');
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+  const [withoutDegree, setWithoutDegree] = useState<boolean>(false);
 
   // Login state
   const [loginIdentifier, setLoginIdentifier] = useState<string>('@prof_vikram');
@@ -36,7 +37,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
   const [formData, setFormData] = useState({
     firstName: '',
     surname: '',
-    degreeDiploma: 'M.Tech / M.Sc / Ph.D in Computer Science',
+    degreeDiploma: '',
     gmail: '',
     mobileNumber: '',
     whatsappNumber: '',
@@ -112,6 +113,7 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
+          degreeDiploma: withoutDegree || !formData.degreeDiploma.trim() ? 'Self-Taught / Industry Experience (No Degree)' : formData.degreeDiploma,
           payoutAccount: {
             type: formData.payoutType,
             identifier: formData.payoutIdentifier || `${formData.gmail.split('@')[0]}@okaxis`,
@@ -292,15 +294,74 @@ export const TeacherAuthModal: React.FC<TeacherAuthModalProps> = ({
 
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1">Highest Degree / Diploma *</label>
-                  <input
-                    type="text"
-                    value={formData.degreeDiploma}
-                    onChange={(e) => handleInputChange('degreeDiploma', e.target.value)}
-                    placeholder="Ph.D., M.Tech, M.Sc, B.Ed"
-                    className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-red-500 focus:outline-none"
-                    required
-                  />
+                  <div className="flex items-center justify-between mb-1">
+                    <label className="block text-xs font-bold text-slate-700">
+                      Highest Degree / Diploma {withoutDegree ? '(Optional)' : '*'}
+                    </label>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const nextVal = !withoutDegree;
+                        setWithoutDegree(nextVal);
+                        if (nextVal) {
+                          handleInputChange('degreeDiploma', 'Self-Taught / Industry Experience (No Degree)');
+                        } else {
+                          handleInputChange('degreeDiploma', '');
+                        }
+                      }}
+                      className={`text-[10px] font-bold px-2 py-0.5 rounded transition-all cursor-pointer ${
+                        withoutDegree
+                          ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                          : 'bg-slate-100 text-blue-700 hover:bg-blue-50 border border-slate-200'
+                      }`}
+                    >
+                      {withoutDegree ? '✓ No Degree Selected' : 'No Degree? Click'}
+                    </button>
+                  </div>
+
+                  {withoutDegree ? (
+                    <div className="p-2.5 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center justify-between">
+                      <div className="space-y-0.5">
+                        <p className="text-[11px] font-bold text-emerald-800">
+                          🎓 Continuing Without Degree
+                        </p>
+                        <p className="text-[10px] text-emerald-700">
+                          Assessed via practical skills, portfolio &amp; interview.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setWithoutDegree(false);
+                          handleInputChange('degreeDiploma', '');
+                        }}
+                        className="text-[10px] text-emerald-800 hover:underline font-bold cursor-pointer"
+                      >
+                        Add Degree
+                      </button>
+                    </div>
+                  ) : (
+                    <>
+                      <input
+                        type="text"
+                        value={formData.degreeDiploma}
+                        onChange={(e) => handleInputChange('degreeDiploma', e.target.value)}
+                        placeholder="e.g. B.Tech, M.Tech, B.Ed or Diploma"
+                        className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:border-red-500 focus:outline-none"
+                        required={!withoutDegree}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setWithoutDegree(true);
+                          handleInputChange('degreeDiploma', 'Self-Taught / Industry Experience (No Degree)');
+                        }}
+                        className="mt-1 text-[10px] text-blue-600 hover:text-blue-800 font-semibold underline block text-left cursor-pointer"
+                      >
+                        👉 Degree nahi hai? Continue without degree (Self-taught / Portfolio)
+                      </button>
+                    </>
+                  )}
                 </div>
                 <div>
                   <label className="block text-xs font-bold text-slate-700 mb-1">Teaching Category *</label>

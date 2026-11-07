@@ -26,6 +26,7 @@ import {
   Eye,
   Play,
   Compass,
+  Smartphone,
 } from 'lucide-react';
 import { 
   StudentProfile, 
@@ -49,6 +50,7 @@ interface StudentDashboardViewProps {
   onOpenCertificate: (cert: Certificate) => void;
   onUpdateCategory: (category: LearningCategory) => void;
   onAssignTeacher: (teacherId: string) => void;
+  onOpenAppInstallModal?: () => void;
 }
 
 export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({
@@ -60,6 +62,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({
   onOpenCertificate,
   onUpdateCategory,
   onAssignTeacher,
+  onOpenAppInstallModal,
 }) => {
   const [activeTab, setActiveTab] = useState<'CLASSES' | 'CHOOSE_TEACHERS' | 'ATTENDANCE' | 'MY_ACTIVITY' | 'CHOOSE_CATEGORY'>('CLASSES');
   const [activitySubTab, setActivitySubTab] = useState<'LEARN' | 'QNA'>('LEARN');
@@ -164,6 +167,33 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({
           <span className="shrink-0 text-[10px] text-red-500 font-mono">
             {new Date(headlines[0].createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>
+        </div>
+      )}
+
+      {/* Mobile App Download & Install Banner */}
+      {onOpenAppInstallModal && (
+        <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-md border border-slate-700">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
+              <Smartphone className="w-5 h-5" />
+            </div>
+            <div>
+              <p className="text-sm font-bold text-white flex items-center gap-2">
+                <span>SKILLJ Mobile App Center</span>
+                <span className="bg-emerald-500 text-white text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase">1-Tap Install / APK</span>
+              </p>
+              <p className="text-xs text-slate-300">
+                Install direct on phone, get .APK file, or fix &amp; run .AAB bundle.
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onOpenAppInstallModal}
+            className="w-full sm:w-auto px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white text-xs font-black rounded-xl transition-all shadow-md cursor-pointer flex items-center justify-center gap-2 shrink-0"
+          >
+            <span>Open Install &amp; APK Center</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
         </div>
       )}
 
@@ -423,7 +453,7 @@ export const StudentDashboardView: React.FC<StudentDashboardViewProps> = ({
                     <video
                       controls
                       playsInline
-                      src={activeVideo?.videoUrl || 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'}
+                      src={activeVideo?.videoUrl || 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4'}
                       className="w-full h-full object-cover"
                     />
                   </div>
